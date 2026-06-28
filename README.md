@@ -39,6 +39,33 @@ manipulators, while passive funds are mostly bystanders.
 
 ---
 
+## Is any of this real? (the literature)
+
+The simulation is a stylised cartoon, but the forces it models are studied
+extensively. A grounded, cited review lives in
+**[`docs/literature-and-market-context.md`](docs/literature-and-market-context.md)**.
+The short version:
+
+- **"Dumb money" is real and well established.** Retail / mutual-fund flows
+  chase past performance and underperform through bad timing
+  (Frazzini & Lamont 2008; Barber & Odean 2000). The *direction* is rock-solid;
+  the precise *magnitude* is contested.
+- **Passive investing genuinely lowers price informativeness and raises
+  comovement/volatility at the margin** (Grossman–Stiglitz's free-rider logic;
+  causal evidence from index-inclusion studies) — but the effects are modest, and
+  the **"index effect" has actually *disappeared*** over time
+  (Greenwood & Sammon), which cuts against the strong "passive is breaking
+  markets" claim.
+- **Today (2024):** passive overtook active at **>50% of US fund assets**, and the
+  S&P 500 is at **record concentration** (the "Magnificent Seven" ≈ 30–35% of the
+  index). Whether this makes markets *fragile to a flow reversal* is the main
+  open debate — not a settled fact.
+
+See the doc for the full discussion, the established-vs-contested breakdown, and
+references.
+
+---
+
 ## Run it locally
 
 ```bash

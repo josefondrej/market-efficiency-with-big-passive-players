@@ -301,4 +301,9 @@ with st.expander("ℹ️ How the model works / caveats"):
         "- **Caveats**: this is a stylised teaching model, not a calibrated "
         "forecast. Sophisticated investors' compounded returns over long runs "
         "are exaggerated (no funding/blow-up risk); treat cross-type comparisons "
-        "as qualitative.")
+        "as qualitative.\n"
+        "- **The real literature**: a cited review of the 'dumb money' and "
+        "passive-investing research, and where the S&P 500 stands today, is in "
+        "[`docs/literature-and-market-context.md`](https://github.com/josefondrej/"
+        "market-efficiency-with-big-passive-players/blob/main/docs/"
+        "literature-and-market-context.md).")

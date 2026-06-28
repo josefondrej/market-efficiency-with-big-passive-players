@@ -192,9 +192,27 @@ st.markdown(
     "change the world, then watch how efficient (or not) the market becomes.")
 
 cfg = sidebar_config()
-with st.spinner("Simulating the market…"):
-    r = cached_run(cfg.to_dict())
+# The simulation can take a few seconds, so only run it when the user clicks the
+# button (not on every slider tweak). The first page load runs once so the
+# dashboard isn't empty; after that, parameter changes wait for an explicit run.
+st.sidebar.markdown("---")
+run_clicked = st.sidebar.button("▶️ Run simulation", type="primary",
+                                width='stretch')
+
+if "result" not in st.session_state:
+    run_clicked = True  # auto-run on first load
+
+if run_clicked:
+    with st.spinner("Simulating the market…"):
+        st.session_state.result = cached_run(cfg.to_dict())
+        st.session_state.ran_cfg = cfg.to_dict()
+
+r = st.session_state.result
 s = summary(r)
+
+if st.session_state.ran_cfg != cfg.to_dict():
+    st.warning("⚠️ Parameters have changed since the last run. "
+               "Click **▶️ Run simulation** to update the results below.")
 
 c1, c2, c3, c4 = st.columns(4)
 c1.metric("Avg mispricing (2nd half)", f"{s['avg_mispricing']*100:.1f}%",
@@ -255,7 +273,9 @@ with tab3:
                "that inherit whatever mispricing the crowd leaves behind.")
 
 with tab4:
-    i = st.slider("Pick a stock", 0, cfg.n_companies - 1, 0)
+    # Use the displayed result's stock count so this stays valid even if the
+    # sidebar's company count was changed without re-running.
+    i = st.slider("Pick a stock", 0, r.prices.shape[1] - 1, 0)
     st.plotly_chart(fig_stock(r, i), width='stretch', key="stock")
     st.caption("Vertical lines mark manipulation windows (red = pump, blue = dump). "
                "Watch the market price detach from the green fair-value line during "

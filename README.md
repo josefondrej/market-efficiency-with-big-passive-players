@@ -102,12 +102,17 @@ in the app process.
 
 ## What the model does
 
+> **For the full, code-level description** — the period-by-period loop, the exact
+> demand rule for every player, the cheating state machine, and the price-clearing
+> math — see **[`docs/simulation-design.md`](docs/simulation-design.md)**. The
+> summary below is the short version.
+
 | Player | Behaviour |
 | --- | --- |
 | **Passive index funds** | Hold the whole market by capitalisation weight, completely price-insensitive. Buy a stock simply because money flowed in and it's in the index. |
 | **Retail / dumb money** | Chase momentum and trade noisily; panic on crashes; swayed by manipulation hype, spoofed order flow and inflated (wash-trade) volume. |
 | **Active / sophisticated** | Estimate intrinsic value (with error) and want more of a stock the cheaper it is vs. value. Their downward-sloping demand is what pins prices to fundamentals. |
-| **Manipulators** | Trade like active investors but also *cheat*. |
+| **Manipulators** | Trade like active investors but also *cheat* (pump-and-dump, spoofing, insider trading, wash trading). |
 
 **Fundamentals.** Each company's cash flow follows a stochastic process with
 occasional jumps. Intrinsic value = Gordon-growth DCF discounted at
